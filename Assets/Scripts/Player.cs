@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
 
     }
 
-    //Add OnCollisionEnter() here
+    //  If collide with Enemy, delete player and invoke gameEnd event
+    //  TODO: make a proper game end screen with score and have a restart 
+    //  button. 
     void OnCollisionEnter(Collision Other)
     {
         if (Other.gameObject.CompareTag("Enemy"))
