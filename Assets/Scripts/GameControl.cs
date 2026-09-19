@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement; 
 
 /*
     * GameControl class is attached to GameHandler object
@@ -16,9 +13,44 @@ public class GameControl : MonoBehaviour
    
     public bool gameOver = false;
   
-    public float timer = 0f;
+    private float score = 0f;
 
-    public GameObject winText;
+    public GameObject GameOngoingParent;
+
+    public GameObject GameOverOverlayParent;
+
+    private TextMeshProUGUI scoreText;
+    private TextMeshProUGUI gameOverScoreText;
+
+    private void Start()
+    {
+        GameOngoingParent.SetActive(true);
+        GameOverOverlayParent.SetActive(false);
+
+        // obtain the text fields we will be changing 
+        scoreText = GameOngoingParent.GetComponentInChildren<TextMeshProUGUI>(true);
+        gameOverScoreText = GameOverOverlayParent.transform.Find("GameOverScoreText").GetComponent<TextMeshProUGUI>();
+
+        if (scoreText == null)
+        {
+            Debug.LogError("GameOngoingParent must contain a TextMeshProUGUI ScoreText child.", this);
+        }
+
+        if (gameOverScoreText == null)
+        {
+            Debug.LogError("GameOverOverlayParent must contain a TextMeshProUGUI score child.", this);
+        }
+    }
+
+    // subscribe to the EnemyPassedKillZone event when the GameControl object is enabled, and unsubscribe when it is disabled
+    private void OnEnable()
+    {
+        EnemyScript.EnemyPassedKillZone += AddEnemyDodgeBonus;
+    }
+    private void OnDisable()
+    {
+        EnemyScript.EnemyPassedKillZone -= AddEnemyDodgeBonus;
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,22 +58,59 @@ public class GameControl : MonoBehaviour
         // if game is still running
         if(!gameOver)
         {
-            timer += Time.deltaTime;
+            score += Time.deltaTime;
+
+            if (scoreText != null)
+            {
+                scoreText.text = "Score: " + score.ToString("#.00");
+            }
         }
-        // if game is over
-        else
+    }
+
+    public void AddEnemyDodgeBonus()
+    {
+        if (!gameOver)
         {
-            winText.GetComponent<TextMeshProUGUI>().text = "You survived: " + timer.ToString("#.00") + " seconds";
+            score += 10f;
         }
     }
 
-    public void endGame(){
+    public void endGame()
+    {
+
+        // prevent endGame from running multiple times
+        if (gameOver)
+        {
+            return;
+        }
+        
+        // now change the state of the game
         gameOver = true;
-        StartCoroutine(restart());
+        
+        // disable the current in game score text 
+        GameOngoingParent.SetActive(false);
+        
+        // set the score in the gameover scren 
+        if (gameOverScoreText != null)
+        {
+            gameOverScoreText.text = "Score: " + score.ToString("#.00");
+        }
+
+        // enable the GameOver (this is overlaying the current screen)
+        GameOverOverlayParent.SetActive(true);
+        Time.timeScale = 0f;
     }
 
-    IEnumerator restart(){
-        yield return new WaitForSeconds(5f);
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }

@@ -1,1 +1,9 @@
 Test file for fetching purposes
+
+
+New things to add:
+TODO: A game menu at the start (and one we can return to in the pause menu)
+
+TODO: A pause menu
+
+TODO: Game over screen should have a restart and menu buttons

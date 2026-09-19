@@ -1,0 +1,34 @@
+.header {
+    font-size: 166px;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 6px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+}
+
+.mainMenuButtons {
+    font-size: 117px;
+    width: 781px;
+    height: 238px;
+    margin-bottom: 0;
+    left: 540px;
+    right: 0;
+    top: 230px;
+    background-color: rgb(89, 162, 238);
+    -unity-text-outline-width: -1px;
+    text-shadow: 0 0 34.5px rgb(255, 255, 255);
+    background-image: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Textures/Floor%20Cement.jpg?fileID=2800000&guid=283f897e4925411ebbaa758b4cb13fc2&type=3#Floor Cement");
+    transition-timing-function: ease-in-out;
+}
+
+.mainMenuButtons:hover {
+    scale: 1.1 1.1;
+    -unity-background-image-tint-color: rgba(248, 0, 0, 0.7);
+    background-color: rgb(255, 194, 240);
+    background-image: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Textures/Brushed%20Metal%203.jpg?fileID=2800000&guid=f88677df267a41d6be1e7a6133e7d227&type=3#Brushed Metal 3");
+}
+
+.button {
+    align-items: stretch;
+}

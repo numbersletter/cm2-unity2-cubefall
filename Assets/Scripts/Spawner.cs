@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
         while(true)
         {
             GameObject zombieCopy = Instantiate(zombie, 
-                                                new Vector3(Random.Range(-27f, 27f), 21f, 0f), 
+                                                new Vector3(Random.Range(-27f, 28f), 21f, 0f), 
                                                 transform.rotation);
             yield return new WaitForSeconds(spawnTime);
 

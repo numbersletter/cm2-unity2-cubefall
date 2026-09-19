@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuTitle.uss?fileID=7433441132597879392&amp;guid=3523e5833face1841939753e9b0559c8&amp;type=3#MainMenuTitle" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(7, 29, 0); align-items: center;">
+        <ui:Label text="Zombie Cubes" class="header" style="top: 92px; background-color: rgb(238, 0, 0); -unity-background-scale-mode: stretch-to-fill; overflow: visible; background-repeat: no-repeat no-repeat; padding-top: 0; padding-right: 21px; padding-left: 21px; border-top-left-radius: 60px; border-top-right-radius: 60px; border-bottom-right-radius: 60px; border-bottom-left-radius: 60px;" />
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; padding-bottom: 0;">
+            <ui:Button text="PLAY" name="PlayButton" class="mainMenuButtons" style="left: 0; top: 193px; background-color: rgb(134, 238, 89); transition-duration: 0.35s; transition-timing-function: ease-out;" />
+            <ui:Button text="HIGH SCORES" name="HighScoresButton" class="button mainMenuButtons" style="font-size: 105px; left: 0; top: 268px; background-color: rgb(134, 238, 89);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
